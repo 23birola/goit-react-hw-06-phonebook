@@ -1,11 +1,11 @@
-import { ADD_CONTACT, DELETE_CONTACT } from "../types/phonebookTypes";
+// import { ADD_CONTACT, DELETE_CONTACT} from "../types/phonebookTypes";
 
-export const addContact = (data) => ({
-  type: ADD_CONTACT,
-  payload: data,
-});
+// export const addContact = (data) => ({
+//   type: ADD_CONTACT,
+//   payload: data,
+// });
 
-export const deleteItem = (id) => ({
-  type: DELETE_CONTACT,
-  payload: id,
-});
+// export const deleteItem = (id) => ({
+//   type: DELETE_CONTACT,
+//   payload: id,
+// });

@@ -1,37 +1,20 @@
-import { useRef, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import toast, { Toaster } from 'react-hot-toast';
 import { useSelector, useDispatch } from 'react-redux';
 
 import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
-import { addContact, deleteItem } from './redux/actions/actions-contacts';
-import { filterContacts } from './redux/actions/actions-filter';
+import { addContact, deleteItem } from './redux/slices/contacts-slice';
+import { filterContacts } from './redux/slices/filter-slice';
 import Filter from './components/Filter/Filter';
 import css from './App.module.css';
 
 
 export default function App() {
-  const mounted = useRef(false);
   const contacts = useSelector((state) => state.items);
+  console.log(contacts);
   const filter = useSelector((state) => state.filter)
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   const contactsLS = JSON.parse(localStorage.getItem('contacts'));
-
-  //   if (contactsLS) {
-  //     dispatch(addContact(contactsLS));
-  //   }
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   if (!mounted.current) {
-  //     mounted.current = true;
-  //     return;
-  //   }
-  //   localStorage.setItem('contacts', JSON.stringify(contacts));
-  // }, [contacts]);
 
   const onSubmit = e => {
     e.preventDefault();
@@ -39,7 +22,7 @@ export default function App() {
     const number = e.target.elements.number.value;
     const id = uuidv4();
     const existingContact = contacts.find(
-      contact => contact.name.toLowerCase() === name.toLowerCase(),
+      contact => contact.name.toLowerCase() === name.toLowerCase()
     );
 
     if (existingContact) {
@@ -53,6 +36,7 @@ export default function App() {
 
   const handleChange = e => {
     const filterName = e.target.value.toLowerCase();
+    console.log(filterName);
     dispatch(filterContacts(filterName));
   };
 
