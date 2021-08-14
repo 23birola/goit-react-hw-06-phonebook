@@ -4,14 +4,14 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
-import { addContact, deleteItem } from './redux/slices/contacts-slice';
+import { addItem, deleteItem } from './redux/slices/contacts-slice';
 import { filterContacts } from './redux/slices/filter-slice';
 import Filter from './components/Filter/Filter';
 import css from './App.module.css';
 
 
 export default function App() {
-  const contacts = useSelector((state) => state.items);
+  const contacts = useSelector((state) => state.contacts);
   console.log(contacts);
   const filter = useSelector((state) => state.filter)
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ export default function App() {
     if (existingContact) {
       return toast.error(`${name} is already in contacts!!!`);
     }
-    dispatch(addContact({ id, name, number }));
+    dispatch(addItem({ id, name, number }));
 
     e.target.elements.name.value = '';
     e.target.elements.number.value = '';
